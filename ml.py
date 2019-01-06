@@ -1,13 +1,15 @@
-f = open("name", "r")
+f = open("name.txt", "r")
 name = f.readline()
 f.close()
 
 f = open("tweet.json", "r")
 line = f.readline()
 hashtag = ""
+hashtags = []
 try:
     hashtag = line[line.index("[",line.index("hashtags\":")) : line.index("]}]},",line.index("hashtags\":"))+1]
     if hashtag[1] == "]":
+<<<<<<< HEAD
 	    hashtag = ""
 except:
     try:
@@ -16,22 +18,41 @@ except:
 	        hashtag = ""
     except:
 	    hashtag = ""	
+=======
+        hashtag = ""
+except:
+    try:
+        hashtag = line[line.index("[",line.index("hashtags\":")) : line.index("],",line.index("hashtags\":"))+1]
+        if hashtag[1] == "]":
+            hashtag = ""
+    except:
+        hashtag = ""	
+>>>>>>> master
 if (len(hashtag) != 2 and len(hashtag) != 0):
     hashtag = hashtag[1 : len(hashtag)-1].lower()
     hashtags = hashtag.split("},")
     for x in range(len(hashtags)):
+<<<<<<< HEAD
 	    try:
 	        hashtags[x] = (hashtags[x])[9 : hashtags[x].index("indices")-3]
 	    except:
 	        hashtags[x] = ""
+=======
+        try:
+            hashtags[x] = (hashtags[x])[9 : hashtags[x].index("indices")-3]
+        except:
+            hashtags[x] = ""
+>>>>>>> master
 f.close()
 
 f = open("tweet.json", "r")
 line = f.readline()
 mention = ""
+mentions = []
 try:
     mention = line[line.index("[",line.index("user_mentions\":")) : line.index("]}]},",line.index("user_mentions\":"))+1]
     if mention[1] == "]":
+<<<<<<< HEAD
 	    mention = ""
 except:
     try:
@@ -40,14 +61,31 @@ except:
 	        mention = ""
     except:
 	    mention = ""	
+=======
+        mention = ""
+except:
+    try:
+        mention = line[line.index("[",line.index("user_mentions\":")) : line.index("}]",line.index("user_mentions\":"))+2]
+        if mention[1] == "]":
+            mention = ""
+    except:
+        mention = ""
+>>>>>>> master
 if (len(mention) != 2 and len(mention) != 0):
     mention = mention[1 : len(mention)-1].lower()
     mentions = mention.split("},")
     for x in range(len(mentions)):
+<<<<<<< HEAD
 	    try:
 	        mentions[x] = (mentions[x])[mentions[x].index("screen_name\":")+14 : mentions[x].index("\",\"")]
 	    except:
 	        mentions[x] = ""
+=======
+        try:
+            mentions[x] = (mentions[x])[mentions[x].index("screen_name\":")+14 : mentions[x].index("\",")]
+        except:
+            mentions[x] = ""
+>>>>>>> master
 f.close()
 
 f = open("averageHashtags.txt", "r")
