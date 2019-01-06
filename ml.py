@@ -8,22 +8,22 @@ hashtag = ""
 try:
     hashtag = line[line.index("[",line.index("hashtags\":")) : line.index("]}]},",line.index("hashtags\":"))+1]
     if hashtag[1] == "]":
-	hashtag = ""
+	    hashtag = ""
 except:
     try:
-	hashtag = line[line.index("[",line.index("hashtags\":")) : line.index("],",line.index("hashtags\":"))+1]
-	if hashtag[1] == "]":
-	    hashtag = ""
+	    hashtag = line[line.index("[",line.index("hashtags\":")) : line.index("],",line.index("hashtags\":"))+1]
+	    if hashtag[1] == "]":
+	        hashtag = ""
     except:
-	hashtag = ""	
+	    hashtag = ""	
 if (len(hashtag) != 2 and len(hashtag) != 0):
     hashtag = hashtag[1 : len(hashtag)-1].lower()
     hashtags = hashtag.split("},")
     for x in range(len(hashtags)):
-	try:
-	    hashtags[x] = (hashtags[x])[9 : hashtags[x].index("indices")-3]
-	except:
-	    hashtags[x] = ""
+	    try:
+	        hashtags[x] = (hashtags[x])[9 : hashtags[x].index("indices")-3]
+	    except:
+	        hashtags[x] = ""
 f.close()
 
 f = open("tweet.json", "r")
@@ -32,22 +32,22 @@ mention = ""
 try:
     mention = line[line.index("[",line.index("user_mentions\":")) : line.index("]}]},",line.index("user_mentions\":"))+1]
     if mention[1] == "]":
-	mention = ""
+	    mention = ""
 except:
     try:
-	mention = line[line.index("[",line.index("user_mentions\":")) : line.index("],",line.index("user_mentions\":"))+1]
-	if mention[1] == "]":
-	    mention = ""
+	    mention = line[line.index("[",line.index("user_mentions\":")) : line.index("],",line.index("user_mentions\":"))+1]
+	    if mention[1] == "]":
+	        mention = ""
     except:
-	mention = ""	
+	    mention = ""	
 if (len(mention) != 2 and len(mention) != 0):
     mention = mention[1 : len(mention)-1].lower()
     mentions = mention.split("},")
     for x in range(len(mentions)):
-	try:
-	    mentions[x] = (mentions[x])[mentions[x].index("screen_name\":")+14 : mentions[x].index("\",\"")]
-	except:
-	    mentions[x] = ""
+	    try:
+	        mentions[x] = (mentions[x])[mentions[x].index("screen_name\":")+14 : mentions[x].index("\",\"")]
+	    except:
+	        mentions[x] = ""
 f.close()
 
 f = open("averageHashtags.txt", "r")
@@ -62,21 +62,21 @@ f.close()
 foundHashtags = 0
 for h in hashtags:
     if h == name:
-        foundHashtags++
+        foundHashtags += 1
 foundMentions = 0
 for m in mentions:
     if m == name:
-        foundMentions++
+        foundMentions += 1
 
 total = foundHashtags / averageHashtags + foundMentions / averageMentions
 
-found = false
+found = False
 if total > 1.5:
     lines = open("dictionary.txt", "r").readlines()
     for lineNum in range(len(lines)):
         line = f.readline()
         if line[0 : line.index(":[")] == name:
-            found = true
+            found = True
             lines[lineNum] = (lines[lineNum])[0:len(lines[lineNum])-1] + ",[" + foundHashtags + "," + foundMentions + "]]"
             break
     if found:

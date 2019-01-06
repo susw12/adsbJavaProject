@@ -4,7 +4,7 @@
 
 import json
 
-f = open("name", "r")
+f = open("flag.txt", "r")
 name = f.readline()
 f.close()
 
@@ -26,91 +26,91 @@ f.close()
 ##tweets.close()
 
 #1 tweet
+def analysis(file, user, name):
+    #get hashtags
+    file = open(file, "r")
+    tweetLine = file.readline()
+    jsonTweet = json.load(tweetLine)
+    hashtags = jsonTweet["hashtags"]
+    file.close()
 
-#get hashtags
-file = open("tweet.json", "r")
-tweetLine = file.readline()
-jsonTweet = json.load(tweetLine)
-hashtags = jsonTweet["hashtags"]
-file.close()
+    #get mentions
+    f = open("tweet.json", "r")
+    line = f.readline()
+    jsonTweet = json.load(line)
+    mentions = jsonTweet["user_mentions"] 
+    f.close()
 
-#get mentions
-f = open("tweet.json", "r")
-line = f.readline()
-jsonTweet = json.load(line)
-mentions[] = jsonTweet["user_mentions"] 
-f.close()
+    #get average hashtags (given, present in textfile)
+    #line 1 will be the average hashtags
+    #line 2 will be number of tweets
+    f = open("averageHashtags.txt", "r")
+    averageHashtags = float(f.readline())
+    numTweetsH = float(f.readline())
+    f.close()
 
-#get average hashtags (given, present in textfile)
-#line 1 will be the average hashtags
-#line 2 will be number of tweets
-f = open("averageHashtags.txt", "r")
-averageHashtags = float(f.readline())
-numTweetsH = float(f.readline())
-f.close()
+    #get average mentions
+    #line 1 will be average mentions
+    #line 2 will be number of tweets
+    f= open("averageMentions.txt", "r")
+    averageMentions = float(f.readline())
+    numTweetsM = float(f.readline())
+    f.close()
 
-#get average mentions
-#line 1 will be average mentions
-#line 2 will be number of tweets
-f= open("averageMentions.txt", "r")
-averageMentions = float(f.readline())
-numTweetsM = float(f.readline())
-f.close()
+    #count number of hashtags referencing conference
+    foundHashtags = 0
+    for h in hashtags:
+        if h == name:
+            foundHashtags += 1
 
-#count number of hashtags referencing conference
-foundHashtags = 0
-for h in hashtags:
-    if h == name:
-        foundHashtags++
+    #count number of mentions referencing conference
+    foundMentions = 0
+    for m in mentions:
+        if m == name:
+            foundMentions += 1
 
-#count number of mentions referencing conference
-foundMentions = 0
-for m in mentions:
-    if m == name:
-        foundMentions++
+    #calculate found/avg for both hashtags and mentions
+    total = foundHashtags / averageHashtags + foundMentions / averageMentions
 
-#calculate found/avg for both hashtags and mentions
-total = foundHashtags / averageHashtags + foundMentions / averageMentions
-
-#determine whether user(?) should be flagged
-#I trust that this works @jason, although i want it to be explained to me xd - Bumjin
-f = open("dictionary.txt", "r")
-found = false
-if total > 1.5:
-    lines = open("dictionary.txt", "r").readlines()
-    for lineNum in range(len(lines)):
-        line = f.readline()
-        if line[0 : line.index(":[")] == name:
-            found = true
-            lines[lineNum] = (lines[lineNum])[0:len(lines[lineNum])-1] + ",[" + foundHashtags + "," + foundMentions + "]]"
-            break
-    if found:
-        f = open("dictionary.txt", "w")
-        f.writelines(lines)
+    #determine whether user(?) should be flagged
+    #I trust that this works @jason, although i want it to be explained to me xd - Bumjin
+    f = open("dictionary.txt", "r")
+    found = False
+    if total > 1.5:
+        lines = open("dictionary.txt", "r").readlines()
+        for lineNum in range(len(lines)):
+            line = f.readline()
+            if line[0 : line.index(":[")] == name:
+                found = True
+                lines[lineNum] = (lines[lineNum])[0:len(lines[lineNum])-1] + ",[" + foundHashtags + "," + foundMentions + "]]"
+                break
+        if found:
+            f = open("dictionary.txt", "w")
+            f.writelines(lines)
+            f.close()
+            lines.close()
+        else:
+            f = open("dictionary.txt", "a")
+            f.write(name + ":[[" + foundHashtags + "," + foundMentions + "]]")
+            f.close()
+        f = open("flag.txt", "w")
+        f.write("true")
         f.close()
-        lines.close()
     else:
-        f = open("dictionary.txt", "a")
-        f.write(name + ":[[" + foundHashtags + "," + foundMentions + "]]")
+        f = open("flag.txt", "w")
+        f.write("false")
         f.close()
-    f = open("flag.txt", "w")
-    f.write("true")
-    f.close()
-else:
-    f = open("flag.txt", "w")
-    f.write("false")
+
+    #determine new average hashtags
+    averageHashtags = ((averageHashtags*numTweetsH)+len(hashtags)) / (numTweetsH + 1)
+    f = open("averageHashtags.txt", "w")
+    f.write(averageHashtags)
+    f.write(numTweetsH+1)
     f.close()
 
-#determine new average hashtags
-averageHashtags = ((averageHashtags*numTweetsH)+len(hashtags)) / (numTweetsH + 1)
-f = open("averageHashtags.txt", "w")
-f.write(averageHashtags)
-f.write(numTweetsH+1)
-f.close()
-
-#determine new average mentions
-averageMentions = ((averageMentions*numTweetsM)+len(mentions)) / (numTweetsM + 1)
-f = open("averageMentions.txt", "w")
-f.write(averageMentions)
-f.write(numTweetsM+1)
-f.close()
+    #determine new average mentions
+    averageMentions = ((averageMentions*numTweetsM)+len(mentions)) / (numTweetsM + 1)
+    f = open("averageMentions.txt", "w")
+    f.write(averageMentions)
+    f.write(numTweetsM+1)
+    f.close()
