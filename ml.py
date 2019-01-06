@@ -1,4 +1,4 @@
-def kowalski():
+def flag():
     f = open("name.txt", "r")
     name = f.readline()
     f.close()
@@ -73,8 +73,10 @@ def kowalski():
 
     total = foundHashtags / averageHashtags + foundMentions / averageMentions
 
+    toFlag = False
     found = False
     if total > 1.5:
+        toFlag = True
         lines = open("dictionary.txt", "r").readlines()
         for lineNum in range(len(lines)):
             line = f.readline()
@@ -109,3 +111,5 @@ def kowalski():
     f.write(averageMentions)
     f.write(numTweetsM+1)
     f.close()
+    
+    return toFlag
