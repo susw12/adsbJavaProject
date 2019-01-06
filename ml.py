@@ -93,13 +93,6 @@ def flag():
             f = open("dictionary.txt", "a")
             f.write(name + ":[[" + foundHashtags + "," + foundMentions + "]]")
             f.close()
-        f = open("flag.txt", "w")
-        f.write("true")
-        f.close()
-    else:
-        f = open("flag.txt", "w")
-        f.write("false")
-        f.close()
 
     averageHashtags = ((averageHashtags*numTweetsH)+len(hashtags)) / (numTweetsH + 1)
     f = open("averageHashtags.txt", "w")
