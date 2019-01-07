@@ -38,9 +38,9 @@ def main():
     try:
 	#amiri
 		kw=[]		
-		kw=readFilelines("keywords")
+		kw=readFilelines("keywords.txt")
 		us=[]		
-		us=readFilelines("users")
+		us=readFilelines("users.txt")
 		print "".join(kw)
 		print "".join(us)
 		auth = tweepy.OAuthHandler('Zy0XiNaCGttJbbgzSCQCqB9uM', 'W56O2AoXtbOzbaZvzy9pKYkt8JBJwpq2pwYgwB16PGzzepSlh0') # get consumerkey, consumersecret at https://apps.twitter.com/
