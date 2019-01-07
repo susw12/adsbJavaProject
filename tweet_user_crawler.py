@@ -41,8 +41,8 @@ def main():
 		kw=readFilelines("keywords.txt")
 		us=[]		
 		us=readFilelines("users.txt")
-		print "".join(kw)
-		print "".join(us)
+		print ("\n".join(kw))
+		print ("\n".join(us))
 		auth = tweepy.OAuthHandler('Zy0XiNaCGttJbbgzSCQCqB9uM', 'W56O2AoXtbOzbaZvzy9pKYkt8JBJwpq2pwYgwB16PGzzepSlh0') # get consumerkey, consumersecret at https://apps.twitter.com/
 		auth.set_access_token('2802732985-htE2S85uKlrIIAnF0GrbQjBSTEM1b91agBJCHDQ', 'LgeaVntKYRKwtB57f4hOyjp14GaAmYKBkK8ivFjKAnBXy') # get accesstoken, accesstokensecret at https://apps.twitter.com/
 		api = tweepy.API(auth)
@@ -61,8 +61,8 @@ def main():
         #f = open(filename + '.unlock', 'w')
         #f.close()
         #filename = gen_file_name()
-		print "Unexpected error:", sys.exc_info()[0]
-		print "sleeping for a while"
+		print ("Unexpected error:", sys.exc_info()[0])
+		print ("sleeping for a while")
 		time.sleep(30)
 		continue
 
