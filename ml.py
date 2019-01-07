@@ -1,9 +1,4 @@
-def flag():
-
-    f = open("user.txt", "r")
-    name = f.readline()
-    f.close()
-
+def flag(name):
     f = open("averageHashtags.txt", "r")
     averageHashtags = float(f.readline())
     numTweetsH = float(f.readline())
