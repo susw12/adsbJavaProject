@@ -1,4 +1,4 @@
-def flag(name):
+def flag(conference, company):
     f = open("averageHashtags.txt", "r")
     averageHashtags = float(f.readline())
     numTweetsH = float(f.readline())
@@ -65,21 +65,21 @@ def flag(name):
         f.close()
         
         for h in hashtags:
-            if h == name:
+            if h == conference:
                 foundHashtags += 1
         for m in mentions:
-            if m == name:
+            if m == conference:
                 foundMentions += 1
 
         totalHashtags += len(hashtags)
         totalMentions += len(mentions)
         numTweets += 1
         
-    total = (foundHashtags / numTweets) / averageHashtags + (foundMentions / numTweets) / averageMentions 
+    total = ((foundHashtags / numTweets) / averageHashtags + (foundMentions / numTweets) / averageMentions) / 2
 
     toFlag = False
     found = False
-    if total > 1.5:
+    if total > 0.75:
         toFlag = True
         lines = open("dictionary.txt", "r").readlines()
         for lineNum in range(len(lines)):
@@ -109,4 +109,9 @@ def flag(name):
     f.write(numTweetsM+numTweets)
     f.close()
 
-    return toFlag
+    print("In "+"numTweets" + " tweets, " + "twitter user @" + company + " used " + totalHashtags + " hashtags and " + totalMentions + "mentions of the twitter user @" + conference)
+    if toFlag:
+        print("@" + company + " and @" + conference + " were found to have a " + total + " correlation with each other, indicating the presence of a strong relationship.")
+    else:
+        print("@" + company + " and @" + conference + " were found to have a " + total + " correlation with each other, indicating the lack of a strong relationship.")
+
