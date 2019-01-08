@@ -1,6 +1,5 @@
 import sys
 import tweepy
-import simplejson as json
 from tweepy.models import Status
 import time
 from sys import stdout
