@@ -37,10 +37,10 @@ def flag(conference, company):
                     hashtags[x] = (hashtags[x])[9 : hashtags[x].index("indices")-3]
                 except:
                     hashtags[x] = ""
-        f.close()
+    f.close()
 
-        f = open("tweets.json", "r")
-        line = f.readline()
+    f = open("tweets.json", "r")
+    for line in f:
         mention = ""
         mentions = []
         try:
@@ -62,18 +62,18 @@ def flag(conference, company):
                     mentions[x] = (mentions[x])[mentions[x].index("screen_name\":")+14 : mentions[x].index("\",")]
                 except:
                     mentions[x] = ""
-        f.close()
+    f.close()
         
-        for h in hashtags:
-            if h == conference:
-                foundHashtags += 1
-        for m in mentions:
-            if m == conference:
-                foundMentions += 1
+    for h in hashtags:
+        if h == conference:
+            foundHashtags += 1
+    for m in mentions:
+        if m == conference:
+            foundMentions += 1
 
-        totalHashtags += len(hashtags)
-        totalMentions += len(mentions)
-        numTweets += 1
+    totalHashtags += len(hashtags)
+    totalMentions += len(mentions)
+    numTweets += 1
         
     total = ((foundHashtags / numTweets) / averageHashtags + (foundMentions / numTweets) / averageMentions) / 2
 
