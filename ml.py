@@ -75,11 +75,11 @@ def flag(conference, company):
         totalMentions += len(mentions)
         numTweets += 1
         
-    total = ((foundHashtags / numTweets) / averageHashtags + (foundMentions / numTweets) / averageMentions) / 2
+    total = ((foundHashtags / numTweets) / averageHashtags + (foundMentions / numTweets) / averageMentions)) / 2
 
     toFlag = False
     found = False
-    if total > 0.75:
+    if total > 0.5:
         toFlag = True
         lines = open("dictionary.txt", "r").readlines()
         for lineNum in range(len(lines)):
