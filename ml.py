@@ -84,7 +84,7 @@ def flag(conference, company):
         lines = open("dictionary.txt", "r").readlines()
         for lineNum in range(len(lines)):
             line = f.readline()
-            if line[0 : line.index(":[")] == name:
+            if line[0 : line.index(":[")] == conference:
                 found = True
                 lines[lineNum] = (lines[lineNum])[0:len(lines[lineNum])-1] + ",[" + foundHashtags + "," + foundMentions + "]]"
                 break
@@ -95,7 +95,7 @@ def flag(conference, company):
             lines.close()
         else:
             f = open("dictionary.txt", "a")
-            f.write(name + ":[[" + foundHashtags + "," + foundMentions + "]]")
+            f.write(conference + ":[[" + foundHashtags + "," + foundMentions + "]]")
             f.close()
             
     averageHashtags = ((averageHashtags*numTweetsH)+totalHashtags) / (numTweetsH + numTweets)
