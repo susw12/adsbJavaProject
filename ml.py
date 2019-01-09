@@ -39,7 +39,7 @@ def flag(conference, company):
                     hashtags[x] = ""
         f.close()
 
-        f = open("tweet.json", "r")
+        f = open("tweets.json", "r")
         line = f.readline()
         mention = ""
         mentions = []
