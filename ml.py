@@ -109,6 +109,8 @@ def flag(conference, company):
     f.write(numTweetsM+numTweets)
     f.close()
 
+    print("Done.\n")
+    
     print("In "+"numTweets" + " tweets, " + "twitter user @" + company + " used " + totalHashtags + " hashtags and " + totalMentions + "mentions of the twitter user @" + conference)
     if toFlag:
         print("@" + company + " and @" + conference + " were found to have a " + total + " correlation with each other, indicating the presence of a strong relationship.")
