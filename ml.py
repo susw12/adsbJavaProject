@@ -75,7 +75,7 @@ def flag(conference, company):
         totalMentions += len(mentions)
         numTweets += 1
         
-    total = ((foundHashtags / numTweets) / averageHashtags + (foundMentions / numTweets) / averageMentions)) / 2
+    total = ((foundHashtags / numTweets) / averageHashtags + (foundMentions / numTweets) / averageMentions) / 2
 
     toFlag = False
     found = False
