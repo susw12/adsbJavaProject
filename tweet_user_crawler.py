@@ -21,3 +21,4 @@ def getTweets(user):
 		print("Unexpected error:", sys.exc_info()[0])
 		print("sleeping for a while")
 		time.sleep(30)
+	print("Done.")
