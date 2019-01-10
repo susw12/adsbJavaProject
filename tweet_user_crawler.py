@@ -22,5 +22,3 @@ def getTweets(user):
 		print("sleeping for a while")
 		time.sleep(30)
 	print("Done.")
-
-getTweets("Microsoft")
