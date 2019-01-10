@@ -1,10 +1,11 @@
 import ml
 import tweet_user_crawler
+import sys
 
-company = input("Please enter the twitter handle of the company: ")
-conference = input("Please enter the twitter handle of the conference: ")
+company = sys.argv[1]
+conference = sys.argv[2]
 
 print("Getting tweets from @" + company + " ...   ", end="")
 tweet_user_crawler.getTweets(company)
 print("Evaluating relationship between @" + company + " and @" + conference + " ...   ", end="")
-ml.flag(conference, company) 
+ml.flag(conference, company)  
