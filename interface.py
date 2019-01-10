@@ -9,7 +9,7 @@ conference = hello[2]
 
 print("Getting tweets from @" + company + " ...   ", end="")
 tweet_user_crawler.getTweets(company)
-print("Evaluating relationship between @" + company + " and @" + conference + " ...   ", end="")
+print("Evaluating relationship between @" + company + " and @" + conference + " ...")
 ml.flag(conference, company)  
 
 

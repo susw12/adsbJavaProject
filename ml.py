@@ -13,6 +13,8 @@ def flag(conference, company):
     foundMentions = 0
     totalMentions = 0
     numTweets = 0
+    hashtags = []
+    mentions = []
 
     lineNum = 0
     f = open("tweets.json", "r")
@@ -20,7 +22,6 @@ def flag(conference, company):
         if (lineNum % 2 == 0):
             numTweets += 1
             hashtag = line.strip()
-            hashtags = []
             if (len(hashtag) == 2):
                 hashtag = ""
             else:
@@ -34,9 +35,8 @@ def flag(conference, company):
                     foundHashtags += 1
         else:
             mention = line.strip()
-            mentions = []
             if (len(mention) == 2):
-                hashtag = ""
+                mention = ""
             else:
                 mention = mention[1 : len(mention)-1].lower()
                 mentions = mention.split("}, ")
@@ -53,17 +53,17 @@ def flag(conference, company):
     totalHashtags += len(hashtags)
     totalMentions += len(mentions)
 
-    print()
+    print("\n")
     print("foundHashtags: " + str(foundHashtags))
     print("foundMentions: " + str(foundMentions))
     print("numTweets:" + str(numTweets))
     print("averageHashtags: " + str(averageHashtags))
     print("averageMentions: " + str(averageMentions))
     total = ((float(foundHashtags) / float(numTweets)) / float(averageHashtags) + (float(foundMentions) / float(numTweets)) / float(averageMentions)) / 2
-
+    
     toFlag = False
-    found = False
-    if total > 0.5:
+    #found = False
+    if total > 0.35:
         toFlag = True
         """
         lines = open("dictionary.txt", "r").readlines()
@@ -82,7 +82,7 @@ def flag(conference, company):
             f = open("dictionary.txt", "a")
             f.write(conference + ":[[" + foundHashtags + "," + foundMentions + "]]")
             f.close()
-        """
+    """
             
     averageHashtags = ((averageHashtags*numTweetsH)+totalHashtags) / (numTweetsH + numTweets)
     f = open("averageHashtags.txt", "w")
