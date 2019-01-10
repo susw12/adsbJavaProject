@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - test",
+            "request": "launch",
+            "mainClass": "test",
+            "projectName": "adsbJavaProject_b3180333"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - superTest",
+            "request": "launch",
+            "mainClass": "oldFiles.superTest",
+            "projectName": "adsbJavaProject_b3180333"
+        }
+    ]
+}
