@@ -1,4 +1,4 @@
-def flag(conference, company):
+def flag(conferenceHashtag, conferenceHandle, company):
     f = open("averageHashtags.txt", "r")
     averageHashtags = float(f.readline())
     numTweetsH = float(f.readline())
@@ -31,7 +31,7 @@ def flag(conference, company):
                     hashtags[x] = (hashtags[x])[10 : hashtags[x].index(", 'indices'")-1].strip()
             for h in hashtags:
                 print(h + " : " + str(numTweets))
-                if h == conference:
+                if h == conferenceHashtag:
                     foundHashtags += 1
         else:
             mention = line.strip()
@@ -44,7 +44,7 @@ def flag(conference, company):
                     mentions[x] = (mentions[x])[17 : mentions[x].index(", 'name")-1].strip()
             for m in mentions:
                 print(m + " : " + str(numTweets))
-                if m == conference:
+                if m == conferenceHandle:
                     foundMentions += 1
         lineNum += 1
             
@@ -82,7 +82,7 @@ def flag(conference, company):
             f = open("dictionary.txt", "a")
             f.write(conference + ":[[" + foundHashtags + "," + foundMentions + "]]")
             f.close()
-    """
+        """
             
     averageHashtags = ((averageHashtags*numTweetsH)+totalHashtags) / (numTweetsH + numTweets)
     f = open("averageHashtags.txt", "w")
@@ -99,8 +99,8 @@ def flag(conference, company):
 
     print("Done.\n")
     
-    print("In "+ str(numTweets) + " tweets, " + "twitter user @" + company + " used " + str(foundHashtags) + " hashtags and " + str(foundMentions) + " mentions of the twitter user @" + conference)
+    print("In "+ str(numTweets) + " tweets, " + "twitter user @" + company + " used " + str(foundHashtags) + " hashtags and " + str(foundMentions) + " mentions of the twitter user @" + conferenceHandle)
     if toFlag:
-        print("@" + company + " and @" + conference + " were found to have a " + str(total) + " correlation with each other, indicating the presence of a strong relationship.")
+        print("@" + company + " and @" + conferenceHandle + " or #" + conferenceHashtag + " were found to have a " + str(total) + " correlation with each other, indicating the presence of a strong relationship.")
     else:
-        print("@" + company + " and @" + conference + " were found to have a " + str(total) + " correlation with each other, indicating the lack of a strong relationship.")
+        print("@" + company + " and @" + conferenceHandle + " or #" + conferenceHashtag + " were found to have a " + str(total) + " correlation with each other, indicating the lack of a strong relationship.")

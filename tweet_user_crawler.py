@@ -40,7 +40,7 @@ def getTweets(user):
 		for tweet in tweepy.Cursor(api.user_timeline, id=user, tweet_mode='extended').items():
 			f.write(str(tweet.entities.get("hashtags")) + "\n" + str(tweet.entities.get("user_mentions")) + "\n")
 			count += 1
-			if count >= 1000:
+			if count >= 200:
 				break
 		f.close()
 	except:
