@@ -30,7 +30,7 @@ def flag(conferenceHashtag, conferenceHandle, company):
                 for x in range(len(hashtags)):
                     hashtags[x] = (hashtags[x])[10 : hashtags[x].index(", 'indices'")-1].strip()
             for h in hashtags:
-                print(h + " : " + str(numTweets))
+                #print(h + " : " + str(numTweets))
                 if h == conferenceHashtag:
                     foundHashtags += 1
         else:
@@ -43,7 +43,7 @@ def flag(conferenceHashtag, conferenceHandle, company):
                 for x in range(len(mentions)):
                     mentions[x] = (mentions[x])[17 : mentions[x].index(", 'name")-1].strip()
             for m in mentions:
-                print(m + " : " + str(numTweets))
+                #print(m + " : " + str(numTweets))
                 if m == conferenceHandle:
                     foundMentions += 1
         lineNum += 1
@@ -63,7 +63,7 @@ def flag(conferenceHashtag, conferenceHandle, company):
     
     toFlag = False
     #found = False
-    if total > 0.35:
+    if total > 0.25:
         toFlag = True
         """
         lines = open("dictionary.txt", "r").readlines()
