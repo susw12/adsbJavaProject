@@ -21,7 +21,7 @@ public class RUNME{
             }
 
             //Testing code that printed out errors
-            /* BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+            /*BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             System.out.println("The following errors were printed:\n");
             while ((s = stdError.readLine()) != null) {
                 System.out.println(s);
