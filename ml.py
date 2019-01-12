@@ -41,7 +41,7 @@ def flag(conferenceHashtag, conferenceHandle, company):
                 mention = mention[1 : len(mention)-1].lower()
                 mentions = mention.split("}, ")
                 for x in range(len(mentions)):
-                    mentions[x] = (mentions[x])[17 : mentions[x].index(", 'name")-1].strip()
+                    mentions[x] = (mentions[x])[20 : mentions[x].index(", 'name")-1].strip()
             for m in mentions:
                 print(m + " : " + str(numTweets))
                 if m == conferenceHandle:
