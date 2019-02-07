@@ -24,7 +24,7 @@ f.close()
 ##    hashtags += jsonTweet["hashtag"]
 ##    
 ##tweets.close()
-
+# Testing
 #1 tweet
 def analysis(file, user, name):
     #get hashtags
